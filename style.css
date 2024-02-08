@@ -335,7 +335,10 @@ span {
     margin: 0;
   }
   main{
-    height: 120vh;
-    width: 31rem;
+    height: 130vh;
+    width: 35rem;
+  }
+  body{
+    overflow: hidden;
   }
 }
