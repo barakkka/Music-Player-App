@@ -1,0 +1,327 @@
+:root {
+  --primary-color: rgb(106, 106, 255);
+  --secondary-color: rgb(0, 0, 83);
+  font-family: cursive;
+}
+
+body {
+  margin: 0;
+}
+main {
+  background-color: var(--primary-color);
+  border-top: 1px solid var(--primary-color);
+  min-height: 99.9vh;
+}
+.musicPlayer {
+  width: 30rem;
+  min-width: 30rem;
+  margin: auto;
+  margin-top: 2.3rem;
+}
+.playingSection {
+  width: 100%;
+  min-height: 10rem;
+  background-color: var(--secondary-color);
+  margin-bottom: 1em;
+  padding: 0.5rem;
+}
+.playlistSection {
+  min-height: 2rem;
+  background-color: var(--secondary-color);
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0 0 5px 5px;
+}
+.topHeader {
+  width: 100%;
+  height: 2rem;
+  background-color: var(--primary-color);
+  text-align: center;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.topHeader h2 {
+  margin: 0;
+  color: white;
+}
+.line {
+  width: 30%;
+  height: 0.2rem;
+  background-color: white;
+  position: absolute;
+}
+.one {
+  top: 10px;
+  left: 20px;
+}
+.two {
+  top: 20px;
+  left: 20px;
+}
+.three {
+  right: 20px;
+  top: 10px;
+}
+.four {
+  right: 20px;
+  top: 20px;
+}
+
+.topContent {
+  width: 93.4%;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.imageDiv {
+  border: 0.3rem solid var(--secondary-color);
+  width: 12rem;
+  height: 10rem;
+  overflow: hidden;
+  border-radius: 7px;
+  position: relative;
+  box-shadow: 0 0 10px 2px white;
+}
+.imageDiv div {
+  height: 10rem;
+  width: 12rem;
+  overflow: hidden;
+  border-radius: 5px;
+}
+#currentSong {
+  background-color: var(--secondary-color);
+  height: 9rem;
+  width: 14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.topContent div img {
+  width: 12rem;
+  margin-top: -45px;
+  filter: saturate(130%) blur(5px);
+}
+.imageAnimation {
+  animation: imgZoom 15s ease-in-out infinite, blur 1s ease-in-out forwards;
+}
+@keyframes blur {
+  to {
+    filter: saturate(130%) blur(0);
+  }
+}
+@keyframes imgZoom {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1);
+  }
+  65% {
+    transform: scale(1.1);
+  }
+  95% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#songDetails {
+  width: 100%;
+  height: 50%;
+  background-color: var(--primary-color);
+}
+.buttons {
+  width: 100%;
+  height: 25%;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navButton {
+  border: none;
+  background: none;
+  color: white;
+  font-weight: bolder;
+}
+.navButton:hover {
+  cursor: pointer;
+}
+.fa {
+  font-size: large;
+}
+
+.item {
+  border: 1px solid white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+  margin-right: 7px;
+}
+.item:hover {
+  cursor: pointer;
+}
+.item div:first-of-type {
+  margin-left: 1rem;
+}
+.itemTwo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.itemTwo div:nth-of-type(2) {
+  margin-right: 1rem;
+}
+.deleteButton {
+  padding: 0;
+  background: none;
+  border-radius: 50%;
+  border: none;
+  margin-right: 1rem;
+  margin-top: 1.2rem;
+}
+.fa-times-circle {
+  color: var(--primary-color);
+  background-color: none;
+  border-radius: 50%;
+}
+.fa-times-circle:hover {
+  cursor: pointer;
+  color: red;
+}
+.musicMotion {
+  width: 1.1rem;
+  height: 1.5rem;
+  background-color: none;
+  margin: 10px 10px 0 0;
+  position: relative;
+  visibility: hidden;
+}
+.first {
+  width: 3px;
+  height: 5px;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  right: 1px;
+  animation: first 2s ease-in infinite;
+}
+.second {
+  width: 3px;
+  height: 10px;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  left: 7.3px;
+  animation: second 2s ease-in-out infinite;
+}
+.third {
+  width: 3px;
+  height: 15px;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  animation: third 1.7s ease-in-out infinite;
+}
+@keyframes first {
+  0% {
+    height: 17px;
+  }
+  50% {
+    height: 5px;
+  }
+  100% {
+    height: 17px;
+  }
+}
+@keyframes second {
+  0% {
+    height: 10px;
+  }
+  50% {
+    height: 17px;
+  }
+  100% {
+    height: 10px;
+  }
+}
+@keyframes third {
+  0% {
+    height: 17px;
+  }
+  50% {
+    height: 5px;
+  }
+  100% {
+    height: 17px;
+  }
+}
+
+#renderSongs {
+  height: 18rem;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+
+h3 {
+  margin: 5px 0 0 5px;
+  color: white;
+}
+span {
+  color: gold;
+}
+#songDetails p {
+  margin: 10px 5px;
+}
+
+.scrollContainer {
+  width: 90%;
+  height: 10%;
+  margin: 20px auto 0 auto;
+}
+#progressBar {
+  width: 100%;
+  height: 3px;
+  background-color: rgb(255, 255, 255, 20%);
+  border-radius: 2px;
+  margin-top: 5px;
+  position: relative;
+}
+#progressBar:hover {
+  cursor: pointer;
+}
+#progressDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#listened {
+  height: 100%;
+  width: 0%;
+  background-color: white;
+}

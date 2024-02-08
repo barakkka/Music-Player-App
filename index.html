@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta viewport="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon_io/android-chrome-512x512.png"
+    />
+    <title>Hers</title>
+  </head>
+  <body>
+    <main>
+      <div class="musicPlayer">
+        <section class="playingSection">
+          <div class="topHeader">
+            <div class="line one"></div>
+            <div class="line two"></div>
+            <h2>Playing</h2>
+            <div class="line three"></div>
+            <div class="line four"></div>
+          </div>
+          <div class="topContent">
+            <div class="imageDiv">
+              <div>
+                <img
+                  src="./images/IMG_20231215_215438_355.jpg"
+                  alt="The Most Beautiful Girl On Planet Earth"
+                  class="image"
+                />
+              </div>
+            </div>
+            <div id="currentSong">
+              <audio id="audio" src="">
+                Your browser doesn't support the audio tag
+              </audio>
+              <div id="songDetails"></div>
+              <div class="scrollContainer">
+                <div id="progressBar" onclick="seek(event)">
+                  <div id="progressDot"></div>
+                  <div id="listened"></div>
+                </div>
+              </div>
+              <div class="buttons">
+                <div>
+                  <button class="navButton previous">
+                    <i class="fa fa-step-backward" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div>
+                  <button class="navButton playPause play">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div>
+                  <button class="navButton next">
+                    <i class="fa fa-step-forward" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div></div>
+                <div>
+                  <button class="navButton shuffle">
+                    <i class="fa fa-shuffle"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="playlistSection">
+          <div class="topHeader">
+            <div class="line one"></div>
+            <div class="line two"></div>
+            <h2>Playlist</h2>
+            <div class="line three"></div>
+            <div class="line four"></div>
+          </div>
+          <div id="renderSongs"></div>
+        </section>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
