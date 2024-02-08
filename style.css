@@ -332,7 +332,7 @@ span {
     overflow-y: scroll;
   }
   .musicPlayer {
-    margin-top: 0rem;
+    margin: 0;
   }
   body{
     overflow-x: hidden;
