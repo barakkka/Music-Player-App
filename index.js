@@ -218,4 +218,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const percentage = (event.clientX - boundingRect.left) / boundingRect.width;
     audio.currentTime = audio.duration * percentage;
   };
+
+  audio.addEventListener("play", function () {
+    if (playPause.classList.contains("play")) {
+      playPause.classList.replace("play", "pause");
+      playPause.innerHTML = renderpause;
+
+      image.classList.add("imageAnimation");
+      document.getElementById(playlist[currentSongId].bars).style.visibility =
+        "visible";
+    }
+  });
+
+  audio.addEventListener("pause", function () {
+    if (playPause.classList.contains("pause")) {
+      playPause.classList.replace("pause", "play");
+      playPause.innerHTML = renderplay;
+
+      image.classList.remove("imageAnimation");
+      document.getElementById(playlist[currentSongId].bars).style.visibility =
+        "hidden";
+    }
+  });
+  
 });
