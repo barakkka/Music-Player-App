@@ -328,13 +328,14 @@ span {
 
 @media screen and (max-width: 600px) {
   #renderSongs {
-    height: 24rem;
+    height: 23.4rem;
     overflow-y: scroll;
   }
   .musicPlayer {
     margin: 0;
   }
-  body{
-    overflow-x: hidden;
+  main{
+    height: 115vh;
+    width: 30rem;
   }
 }
