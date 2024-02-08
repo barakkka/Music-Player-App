@@ -10,7 +10,7 @@ body {
 main {
   background-color: var(--primary-color);
   border-top: 1px solid var(--primary-color);
-  min-height: 99.9vh;
+  min-height: fit-content;
 }
 .musicPlayer {
   width: 30rem;
