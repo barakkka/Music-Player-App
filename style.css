@@ -325,3 +325,13 @@ span {
   width: 0%;
   background-color: white;
 }
+
+@media screen and (max-width: 600px) {
+  #renderSongs {
+    height: 24rem;
+    overflow-y: scroll;
+  }
+  .musicPlayer {
+    margin-top: 0rem;
+  }
+}
