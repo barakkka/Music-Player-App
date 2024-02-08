@@ -42,6 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "./music/Akon - Be With You.mp3",
       bars: "barsFour",
     },
+    {
+      id: 4,
+      artist: "Nyashinski",
+      title: "Perfect Design",
+      link: "./music/Nyashinski - Perfect Design (Official Music Video).mp3",
+      bars: "barsFive",
+    },
   ];
 
   let currentSongId = 0;
