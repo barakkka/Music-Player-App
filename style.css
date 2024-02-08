@@ -337,7 +337,4 @@ span {
   body{
     overflow-x: hidden;
   }
-  .musicPlayer{
-    transform: scale(2);
-  }
 }
