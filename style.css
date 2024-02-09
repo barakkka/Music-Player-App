@@ -1,8 +1,6 @@
 :root {
-  --primary-color: rgb(116, 0, 90);
-  --secondary-color: rgb(255, 0, 200);
-  /* --primary-color: rgb(106, 106, 255);
-  --secondary-color: rgb(0, 0, 83); */
+  --primary-color: rgb(106, 106, 255);
+  --secondary-color: rgb(0, 0, 83);
   font-family: cursive;
 }
 
