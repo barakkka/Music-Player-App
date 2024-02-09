@@ -334,11 +334,11 @@ span {
   .musicPlayer {
     margin: 0;
   }
-  main{
+  main {
     height: 130vh;
     width: 31.3rem;
   }
-  body{
+  body {
     overflow: hidden;
   }
 }

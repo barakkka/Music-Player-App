@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Best I Ever Had🤍",
       link: "./music/[4K] Drake - Best I Ever Had (Lyrics).mp3",
       bars: "barsOne",
+      delete: "deleteOne",
     },
     {
       id: 1,
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Too Easy",
       link: "./music/Bien x Dj Edu - Too Easy (Official Music Video).mp3",
       bars: "barsTwo",
+      delete: "deleteTwo",
     },
     {
       id: 2,
@@ -34,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Girl",
       link: "./music/Girl - Paul Wall.mp3",
       bars: "barsThree",
+      delete: "deleteThree",
     },
     {
       id: 3,
@@ -41,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Be With You",
       link: "./music/Akon - Be With You.mp3",
       bars: "barsFour",
+      delete: "deleteFour",
     },
     {
       id: 4,
@@ -48,8 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Perfect Design",
       link: "./music/Nyashinski - Perfect Design (Official Music Video).mp3",
       bars: "barsFive",
+      delete: "deleteFive",
     },
   ];
+
+  const copy = [...playlist];
 
   let currentSongId = 0;
 
@@ -113,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="third"></div>
           </div>
             <div><p class="artist">${song.artist}</p></div>
-            <div><button class="deleteButton"><i class="fa fa-times-circle"></i></button></div>
+            <div><button class="deleteButton ${song.delete}"><i class="fa fa-times-circle"></i></button></div>
         </div>
     </div>
     `;
@@ -150,6 +157,11 @@ document.addEventListener("DOMContentLoaded", function () {
           playPause.innerHTML = renderpause;
         }
       }
+    });
+
+    const eachDelete = document.querySelector(`.${playlist[i].delete}`);
+    eachDelete.addEventListener("click", function () {
+      //continue here...
     });
   }
 
@@ -240,5 +252,4 @@ document.addEventListener("DOMContentLoaded", function () {
         "hidden";
     }
   });
-  
 });
