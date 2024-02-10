@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const progressDot = document.getElementById("progressDot");
   const listened = document.getElementById("listened");
 
-  const playlist = [
+  let playlist = [
     {
       id: 0,
       artist: "Dake",
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "./music/[4K] Drake - Best I Ever Had (Lyrics).mp3",
       bars: "barsOne",
       delete: "deleteOne",
+      playing: false,
     },
     {
       id: 1,
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "./music/Bien x Dj Edu - Too Easy (Official Music Video).mp3",
       bars: "barsTwo",
       delete: "deleteTwo",
+      playing: false,
     },
     {
       id: 2,
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "./music/Girl - Paul Wall.mp3",
       bars: "barsThree",
       delete: "deleteThree",
+      playing: false,
     },
     {
       id: 3,
@@ -45,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "./music/Akon - Be With You.mp3",
       bars: "barsFour",
       delete: "deleteFour",
+      playing: false,
     },
     {
       id: 4,
@@ -53,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "./music/Nyashinski - Perfect Design (Official Music Video).mp3",
       bars: "barsFive",
       delete: "deleteFive",
+      playing: false,
     },
   ];
 
@@ -62,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function renderSongDetails() {
     songDetails.innerHTML = `<h3>${playlist[currentSongId].title}</h3>
-    <p><span>${playlist[currentSongId].artist}</span></p>`;
+    <p><span class="span ${currentSongId}">${playlist[currentSongId].artist}</span></p>`;
   }
 
   renderSongDetails();
@@ -77,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
       playPause.innerHTML = renderplay;
       playPause.classList.replace("pause", "play");
       audio.pause();
+      playlist[currentSongId].playing = false;
       image.classList.remove("imageAnimation");
       document.getElementById(playlist[currentSongId].bars).style.visibility =
         "hidden";
@@ -84,16 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
       playPause.innerHTML = renderpause;
       playPause.classList.replace("play", "pause");
       if (audio.src.match(/.\/music/)) {
-        console.log(
-          "RegEx match found.. current link:" + playlist[currentSongId].link
-        );
         audio.play();
+        playlist[currentSongId].playling = true;
         image.classList.add("imageAnimation");
         document.getElementById(playlist[currentSongId].bars).style.visibility =
           "visible";
       } else {
         audio.src = playlist[0].link;
         audio.play();
+        playlist[currentSongId].playing = true;
         image.classList.add("imageAnimation");
         document.getElementById(playlist[currentSongId].bars).style.visibility =
           "visible";
@@ -109,60 +114,118 @@ document.addEventListener("DOMContentLoaded", function () {
     playPreviousSong(currentSongId);
   });
 
-  renderSongs.innerHTML = playlist.map((song, index) => {
-    const renderSongitem = `
-    <div class="item" id="${song.link}">
-        <div><p>${song.title}</p></div>
-        <div class="itemTwo">
-          <div class="musicMotion" id="${song.bars}">
-            <div class="first"></div>
-            <div class="second"></div>
-            <div class="third"></div>
+  function mapSongs() {
+    renderSongs.innerHTML = playlist.map((song, index) => {
+      const renderSongitem = `
+      <div class="item" id="${song.link}">
+          <div><p>${song.title}</p></div>
+          <div class="itemTwo">
+            <div class="musicMotion" id="${song.bars}">
+              <div class="first"></div>
+              <div class="second"></div>
+              <div class="third"></div>
+            </div>
+              <div><p class="artist">${song.artist}</p></div>
+              <div><button class="deleteButton ${song.delete}"><i class="fa fa-times-circle"></i></button></div>
           </div>
-            <div><p class="artist">${song.artist}</p></div>
-            <div><button class="deleteButton ${song.delete}"><i class="fa fa-times-circle"></i></button></div>
-        </div>
-    </div>
-    `;
-    return renderSongitem;
-  });
+      </div>
+      `;
+      return renderSongitem;
+    });
+  }
+  mapSongs();
 
   const deleteButton = document.querySelector(".deleteButton");
   const musicMotion = document.querySelector(".musicMotion");
 
-  for (let i = 0; i < playlist.length; i++) {
-    let songItem = document.getElementById(playlist[i].link);
-    songItem.addEventListener("click", function (event) {
-      if (!event.target.closest(".deleteButton")) {
-        audio.src = playlist[i].link;
-        audio.play();
-        currentSongId = i;
-        renderSongDetails();
+  let checker = 0;
+  function reRender() {
+    for (let i = 0; i < playlist.length; i++) {
+      let songItem = document.getElementById(playlist[i].link);
+      songItem.addEventListener("click", function (event) {
+        if (!event.target.closest(".deleteButton")) {
+          audio.src = playlist[i].link;
+          audio.play();
+          currentSongId = i;
+          renderSongDetails();
+          for (let x = 0; x < playlist.length; x++) {
+            if (playlist[x].playing === true) {
+              playlist[x].playing = false;
+            }
+          }
+          playlist[currentSongId].playing = true;
 
-        image.classList.add("imageAnimation");
-        for (let j = 0; j < playlist.length; j++) {
-          if (
-            document.getElementById(playlist[j].bars).style.visibility ===
-            "visible"
-          ) {
-            document.getElementById(playlist[j].bars).style.visibility =
-              "hidden";
+          image.classList.add("imageAnimation");
+          for (let j = 0; j < playlist.length; j++) {
+            if (
+              document.getElementById(playlist[j].bars).style.visibility ===
+              "visible"
+            ) {
+              document.getElementById(playlist[j].bars).style.visibility =
+                "hidden";
+            }
+          }
+          document.getElementById(playlist[i].bars).style.visibility =
+            "visible";
+          if (playPause.classList.contains("pause")) {
+            return;
+          } else {
+            playPause.classList.replace("play", "pause");
+            playPause.innerHTML = renderpause;
           }
         }
-        document.getElementById(playlist[i].bars).style.visibility = "visible";
-        if (playPause.classList.contains("pause")) {
-          return;
-        } else {
-          playPause.classList.replace("play", "pause");
-          playPause.innerHTML = renderpause;
-        }
-      }
-    });
+      });
 
-    const eachDelete = document.querySelector(`.${playlist[i].delete}`);
-    eachDelete.addEventListener("click", function () {
-      //continue here...
-    });
+      const eachDelete = document.querySelector(`.${playlist[i].delete}`);
+      eachDelete.addEventListener("click", function () {
+        if (playlist[i].playing === true) {
+          audio.src = "";
+          image.classList.remove("imageAnimation");
+          playPause.classList.replace("pause", "play");
+          playPause.innerHTML = renderplay;
+        } else {
+          if (i < currentSongId) {
+            currentSongId -= 1;
+          }
+        }
+        // if (audio.playing) {
+        //   document.getElementById(
+        //     playlist[currentSongId].bars
+        //   ).style.visibility = "visible";
+        //   console.log("was playing");
+        // }
+
+        playlist = playlist.filter((item) => item.link !== playlist[i].link);
+        eachDelete.style.backgroundColor = "white";
+
+        checkerFunc(i);
+        mapSongs();
+        reRender();
+      });
+    }
+  }
+  reRender();
+
+  let reset;
+  function checkerFunc(index) {
+    if (checker === 1) {
+      reset.style.visibility = "visible";
+    } else {
+      if (playlist.length <= 3) {
+        renderSongs.insertAdjacentHTML(
+          "afterend",
+          `<div class="resetContainer"><button class="reset">Reset Playlist</button><div>`
+        );
+        reset = document.querySelector(".reset");
+        reset.addEventListener("click", function () {
+          playlist = [...copy];
+          mapSongs();
+          reRender();
+          reset.style.visibility = "hidden";
+        });
+        checker = 1;
+      }
+    }
   }
 
   audio.addEventListener("ended", function () {
@@ -179,9 +242,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "hidden";
       document.getElementById(playlist[current - 1].bars).style.visibility =
         "visible";
+      playlist[currentSongId].playing = false;
       audio.src = playlist[current - 1].link;
       audio.play();
       currentSongId -= 1;
+      playlist[currentSongId].playing = true;
       renderSongDetails();
     }
   }
@@ -190,9 +255,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (previous + 1 < playlist.length) {
       document.getElementById(playlist[previous].bars).style.visibility =
         "hidden";
+      playlist[currentSongId].playing = false;
       audio.src = playlist[previous + 1].link;
       audio.play();
       currentSongId += 1;
+      playlist[currentSongId].playing = true;
       renderSongDetails();
 
       document.getElementById(playlist[previous + 1].bars).style.visibility =
@@ -212,6 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
         playPause.classList.replace("pause", "play");
         playPause.innerHTML = renderplay;
       }
+      playlist[currentSongId].playing = false;
       currentSongId = 0;
       renderSongDetails(currentSongId);
       progressDot.style.left = "0%";

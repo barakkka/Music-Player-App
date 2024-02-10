@@ -326,6 +326,25 @@ span {
   background-color: white;
 }
 
+.resetContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem;
+  visibility: visible;
+}
+.reset {
+  font-size: large;
+  background: none;
+  color: white;
+  padding: 0.2rem 0.7rem;
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+.reset:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
   #renderSongs {
     height: 23.4rem;
