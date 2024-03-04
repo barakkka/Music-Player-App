@@ -69,14 +69,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentSongId = 0;
 
-  function renderSongDetails() {
+  function renderSongDetails(currentSongId) {
     songDetails.innerHTML = `<h3>${playlist[currentSongId].title}</h3>
     <p><span class="span ${currentSongId}">${playlist[currentSongId].artist}</span></p>`;
   }
 
-  renderSongDetails();
+  renderSongDetails(currentSongId);
 
-  function shuffleArray(array) {
+  const randomizedSongId = null;
+  let currentRandomIndex = 0;
+
+  function shuffleSongId() {
+    const array = [0, 1, 2, 3, 4];
     for (let i = array.length; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -85,12 +89,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   shuffle.addEventListener("click", function () {
-    playlist = shuffleArray(playlist);
-    try {
-      mapSongs();
-    } catch (error) {
-      alert("Error while trying to shuffle: " , error)
+    randomizedSongId = shuffleSongId();
+    currentSongId = randomizedSongId[currentRandomIndex];
+    for (let i = 0; i < playlist.length; i++) {
+      if (playlist[i].playing === true) {
+        playlist[i].playing = false;
+        document.getElementById(playlist[i].bars).style.visibility = "hidden";
+      }
     }
+    audio.src = playlist[currentSongId].link;
+    document.getElementById(playlist[currentSongId].bars).style.visibility =
+      "visible";
+    audio.play();
+    playlist[currentSongId].playing = true;
   });
 
   //create the HTML elements to be rendered.
@@ -103,7 +114,12 @@ document.addEventListener("DOMContentLoaded", function () {
       playPause.innerHTML = renderplay;
       playPause.classList.replace("pause", "play");
       audio.pause();
-      playlist[currentSongId].playing = false;
+      if (randomizedSongId) {
+        playlist[randomizedSongId[currentRandomIndex]].playing = false;
+      } else {
+        playlist[currentSongId].playing = false;
+      }
+
       image.classList.remove("imageAnimation");
       document.getElementById(playlist[currentSongId].bars).style.visibility =
         "hidden";
@@ -112,14 +128,22 @@ document.addEventListener("DOMContentLoaded", function () {
       playPause.classList.replace("play", "pause");
       if (audio.src.match(/.\/music/)) {
         audio.play();
-        playlist[currentSongId].playling = true;
+        if (randomizedSongId) {
+          playlist[randomizedSongId[currentRandomIndex]].playing = true;
+          document.getElementById(
+            playlist[randomizedSongId[currentRandomIndex]].bars
+          ).style.visibility = "visible";
+        } else {
+          playlist[currentSongId].playing = true;
+          document.getElementById(
+            playlist[currentSongId].bars
+          ).style.visibility = "visible";
+        }
         image.classList.add("imageAnimation");
-        document.getElementById(playlist[currentSongId].bars).style.visibility =
-          "visible";
       } else {
         audio.src = playlist[0].link;
         audio.play();
-        playlist[currentSongId].playing = true;
+        playlist[0].playing = true;
         image.classList.add("imageAnimation");
         document.getElementById(playlist[currentSongId].bars).style.visibility =
           "visible";
@@ -165,10 +189,11 @@ document.addEventListener("DOMContentLoaded", function () {
       let songItem = document.getElementById(playlist[i].link);
       songItem.addEventListener("click", function (event) {
         if (!event.target.closest(".deleteButton")) {
+          randomizedSongId = null; // return the randomizedSongId to null if a user clicks on a song. removes shuffle.
           audio.src = playlist[i].link;
           audio.play();
           currentSongId = i;
-          renderSongDetails();
+          renderSongDetails(currentSongId);
           for (let x = 0; x < playlist.length; x++) {
             if (playlist[x].playing === true) {
               playlist[x].playing = false;
@@ -252,7 +277,35 @@ document.addEventListener("DOMContentLoaded", function () {
   audio.addEventListener("ended", function () {
     document.getElementById(playlist[currentSongId].bars).style.visibility =
       "hidden";
-    playNextSong(currentSongId);
+
+    if (randomizedSongId) {
+      if (currentRandomIndex + 1 < randomizedSongId.length) {
+        document.getElementById(
+          playlist[randomizedSongId[currentRandomIndex]].bars
+        ).style.visibility = "hidden";
+        playlist[randomizedSongId[currentRandomIndex]].playing = false;
+
+        currentRandomIndex++;
+        audio.src = playlist[randomizedSongId[currentRandomIndex]].link;
+        audio.play();
+        playlist[randomizedSongId[currentRandomIndex]].playing = true;
+        renderSongDetails(randomizedSongId[currentRandomIndex]);
+
+        document.getElementById(
+          playlist[randomizedSongId[currentRandomIndex]].bars
+        ).style.visibility = "visible";
+        if (image.classList.contains("imageAnimation")) {
+          return;
+        } else {
+          image.classList.add("imageAnimation");
+          playPause.classList.replace("play", "pause");
+          playPause.innerHTML = renderpause;
+        }
+      }
+      currentRandomIndex++;
+    } else {
+      playNextSong(currentSongId);
+    }
   });
 
   function playPreviousSong(current) {
@@ -268,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
       audio.play();
       currentSongId -= 1;
       playlist[currentSongId].playing = true;
-      renderSongDetails();
+      renderSongDetails(currentSongId);
     }
   }
 
@@ -281,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
       audio.play();
       currentSongId += 1;
       playlist[currentSongId].playing = true;
-      renderSongDetails();
+      renderSongDetails(currentSongId);
 
       document.getElementById(playlist[previous + 1].bars).style.visibility =
         "visible";
