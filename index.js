@@ -76,6 +76,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderSongDetails();
 
+  function shuffleArray(array) {
+    for (let i = array.length; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  shuffle.addEventListener("click", function () {
+    playlist = shuffleArray(playlist);
+    mapSongs();
+  });
+
   //create the HTML elements to be rendered.
   const renderpause = `<i class="fa fa-pause" aria-hidden="true"></i>`;
   const renderplay = `<i class="fa fa-play" aria-hidden="true"></i>`;
