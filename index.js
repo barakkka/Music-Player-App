@@ -86,7 +86,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   shuffle.addEventListener("click", function () {
     playlist = shuffleArray(playlist);
-    mapSongs();
+    try {
+      mapSongs();
+    } catch (error) {
+      alert("Error while trying to shuffle: " , error)
+    }
   });
 
   //create the HTML elements to be rendered.
