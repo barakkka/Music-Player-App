@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const progressDot = document.getElementById("progressDot");
   const listened = document.getElementById("listened");
 
+  //Requirements...
+  //1. Implement the shuffle functionality.
+  //2. Make it possible for mix.. the user to secroll from 1s up to 12s of song mixing
+
   let playlist = [
     {
       id: 0,
