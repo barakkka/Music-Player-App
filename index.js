@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderSongDetails(currentSongId);
 
-  const randomizedSongId = null;
+  let randomizedSongId = null;
   let currentRandomIndex = 0;
 
   function shuffleSongId() {
