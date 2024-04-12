@@ -16,49 +16,50 @@ document.addEventListener("DOMContentLoaded", function () {
   //Requirements...
   //1. Implement the shuffle functionality.
   //2. Make it possible for mix.. the user to secroll from 1s up to 12s of song mixing
+  const video = document.getElementById("video");
 
   let playlist = [
     {
       id: 0,
-      artist: "Dake",
-      title: "Best I Ever Had🤍",
-      link: "./music/[4K] Drake - Best I Ever Had (Lyrics).mp3",
+      artist: "Daniel Deuschle",
+      title: "Rite Of Passage",
+      link: "./music/Daniel Deuschle - Rite Of Passage.mp3",
       bars: "barsOne",
       delete: "deleteOne",
       playing: false,
     },
     {
       id: 1,
-      artist: "Bien x Dj Edu",
-      title: "Too Easy",
-      link: "./music/Bien x Dj Edu - Too Easy (Official Music Video).mp3",
+      artist: "Elektronomia",
+      title: "Limitless",
+      link: "./music/Elektronomia - Limitless _ Progressive House _ NCS.mp3",
       bars: "barsTwo",
       delete: "deleteTwo",
       playing: false,
     },
     {
       id: 2,
-      artist: "Paul Wall",
-      title: "Girl",
-      link: "./music/Girl - Paul Wall.mp3",
+      artist: "The Lion King 2",
+      title: "He Lives In You",
+      link: "./music/The Lion King 2- He Lives In You.mp3",
       bars: "barsThree",
       delete: "deleteThree",
       playing: false,
     },
     {
       id: 3,
-      artist: "Akon",
-      title: "Be With You",
-      link: "./music/Akon - Be With You.mp3",
+      artist: "Vicetone",
+      title: "Nevada",
+      link: "./music/Vicetone - Nevada.mp3",
       bars: "barsFour",
       delete: "deleteFour",
       playing: false,
     },
     {
       id: 4,
-      artist: "Nyashinski",
-      title: "Perfect Design",
-      link: "./music/Nyashinski - Perfect Design (Official Music Video).mp3",
+      artist: "Warsongs",
+      title: "Piercing Light",
+      link: "./music/Warsongs_ Piercing Light.mp3",
       bars: "barsFive",
       delete: "deleteFive",
       playing: false,
@@ -114,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
       playPause.innerHTML = renderplay;
       playPause.classList.replace("pause", "play");
       audio.pause();
+      video.pause();
       if (randomizedSongId) {
         playlist[randomizedSongId[currentRandomIndex]].playing = false;
       } else {
@@ -374,10 +376,10 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   audio.addEventListener("play", function () {
+    video.play();
     if (playPause.classList.contains("play")) {
       playPause.classList.replace("play", "pause");
       playPause.innerHTML = renderpause;
-
       image.classList.add("imageAnimation");
       document.getElementById(playlist[currentSongId].bars).style.visibility =
         "visible";
@@ -386,9 +388,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   audio.addEventListener("pause", function () {
     if (playPause.classList.contains("pause")) {
+      video.pause();
       playPause.classList.replace("pause", "play");
       playPause.innerHTML = renderplay;
-
       image.classList.remove("imageAnimation");
       document.getElementById(playlist[currentSongId].bars).style.visibility =
         "hidden";

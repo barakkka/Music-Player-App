@@ -1,41 +1,47 @@
 :root {
-  --primary-color: rgb(106, 106, 255);
+  --primary-color: rgb(106, 106, 255, 100%);
   --secondary-color: rgb(0, 0, 83);
   font-family: cursive;
 }
 
 body {
   margin: 0;
+  overflow: hidden;
 }
 main {
-  background-color: var(--primary-color);
-  border-top: 1px solid var(--primary-color);
+  border-top: 1px solid rgb(108, 41, 112);
   min-height: 99.9vh;
+}
+#video {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
 }
 .musicPlayer {
   width: 30rem;
   min-width: 30rem;
   margin: auto;
-  margin-top: 2.3rem;
+  margin-top: 1rem;
 }
 .playingSection {
   width: 100%;
   min-height: 10rem;
-  background-color: var(--secondary-color);
+  /* background-color: var(--secondary-color); */
   margin-bottom: 1em;
-  padding: 0.5rem;
+  border: 0.5rem solid var(--secondary-color);
 }
 .playlistSection {
   min-height: 2rem;
-  background-color: var(--secondary-color);
+  /* background-color: var(--secondary-color); remove background */
   width: 100%;
-  padding: 0.5rem;
+  border: 0.5rem solid var(--secondary-color);
   border-radius: 0 0 5px 5px;
 }
 .topHeader {
   width: 100%;
   height: 2rem;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color);  //remove background */
+  border-bottom: 0.5rem solid var(--secondary-color);
   text-align: center;
   position: relative;
   margin-bottom: 0.5rem;
@@ -69,7 +75,7 @@ main {
 
 .topContent {
   width: 93.4%;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color);  remove background */
   padding: 1rem;
   display: flex;
   flex-direction: row;
@@ -79,14 +85,14 @@ main {
 .imageDiv {
   border: 0.3rem solid var(--secondary-color);
   width: 12rem;
-  height: 10rem;
+  height: 11rem;
   overflow: hidden;
   border-radius: 7px;
   position: relative;
   box-shadow: 0 0 10px 2px white;
 }
 .imageDiv div {
-  height: 10rem;
+  height: 11.1rem;
   width: 12rem;
   overflow: hidden;
   border-radius: 5px;
@@ -275,6 +281,8 @@ main {
 #renderSongs {
   height: 18rem;
   overflow-y: scroll;
+  background-color: var(--secondary-color);
+  margin-top: 0;
 }
 ::-webkit-scrollbar {
   width: 7px;
