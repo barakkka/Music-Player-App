@@ -89,7 +89,7 @@ main {
   overflow: hidden;
   border-radius: 7px;
   position: relative;
-  box-shadow: 0 0 10px 2px white;
+  box-shadow: 0 0 10px 2px gold;
 }
 .imageDiv div {
   height: 11.1rem;
