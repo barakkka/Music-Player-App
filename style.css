@@ -7,6 +7,7 @@
 body {
   margin: 0;
   overflow: hidden;
+  background-color: var(--primary-color);
 }
 main {
   border-top: 1px solid rgb(108, 41, 112);
@@ -389,5 +390,8 @@ span {
   }
   body {
     overflow: hidden;
+  }
+  #video{
+    display: none;
   }
 }
