@@ -167,13 +167,35 @@ main {
 }
 
 .item {
-  border: 5px solid rgb(255, 255, 255, 30%);
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+  border-image-slice: 1;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: white;
   margin-right: 7px;
+  /* animation: borderAnimation 5s linear infinite; */
+}
+@keyframes borderAnimation {
+  0% {
+    border-image: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+    border-image-slice: 1;
+  }
+  33% {
+    border-image: linear-gradient(to right, #0000ff, #ff0000, #00ff00);
+    border-image-slice: 1;
+  }
+  66% {
+    border-image: linear-gradient(to right, #00ff00, #0000ff, #ff0000);
+    border-image-slice: 1;
+  }
+  100% {
+    border-image: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+    border-image-slice: 1;
+  }
 }
 .item:hover {
   cursor: pointer;

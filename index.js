@@ -397,7 +397,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   audio.addEventListener("pause", function () {
     if (playPause.classList.contains("pause")) {
-      video.pause();
       playPause.classList.replace("pause", "play");
       playPause.innerHTML = renderplay;
       image.classList.remove("imageAnimation");
