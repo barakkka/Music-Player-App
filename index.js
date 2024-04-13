@@ -64,6 +64,15 @@ document.addEventListener("DOMContentLoaded", function () {
       delete: "deleteFive",
       playing: false,
     },
+    {
+      id: 5,
+      artist: "NEFFEX",
+      title: "Grateful",
+      link: "./music/NEFFEX - Grateful.mp3",
+      bars: "barsSix  ",
+      delete: "deleteSix",
+      playing: false,
+    },
   ];
 
   const copy = [...playlist];
